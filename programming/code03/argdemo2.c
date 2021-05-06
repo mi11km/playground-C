@@ -1,0 +1,9 @@
+// argdemo2.c --- sum of argument strings (as int)
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char *argv[]) {
+  int sum = 0;
+  for(int i = 1; i < argc; ++i) { sum += atof(argv[i]); }
+  printf("sum = %d\n", sum);
+  return 0;
+}
