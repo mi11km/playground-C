@@ -1,4 +1,6 @@
 #include "compiler.h"
+
+#include <stdio.h>
 #include <ctype.h>
 
 #define INTNUM 300
