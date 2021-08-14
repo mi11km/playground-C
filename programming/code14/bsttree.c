@@ -28,21 +28,24 @@ int itbl_get(itblp p, int k) {
     return get(p->root, k);
 }
 
-static void put(entp *p, int k, int v) {
-    if (*p == NULL) {
-        entp q = *p = (entp) malloc(sizeof(struct ent));
-        q->left = q->right = NULL;
-        q->key = k;
-        q->val = v;
-    } else if (k == (*p)->key) {
-        (*p)->val = v;
-    } else {
-        put((k < (*p)->key) ? &((*p)->left) : &((*p)->right), k, v);
+static entp put(entp p, int k, int v) {
+    if (p == NULL) {
+        p = (entp) malloc(sizeof(struct ent));
+        p->left = p->right = NULL;
+        p->key = k;
+        p->val = v;
+    } else if (k == p->key) {
+        p->val = v;
+    } else if (k < p->key) {
+        p->left = put(p->left, k, v);
+    } else if (k > p->key) {
+        p->right = put(p->right, k, v);
     }
+    return p;
 }
 
 void itbl_put(itblp p, int k, int v) {
-    put(&(p->root), k, v);
+    p->root = put(p->root, k, v);
 }
 
 static void pr(entp p) {
