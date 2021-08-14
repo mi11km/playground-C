@@ -24,7 +24,9 @@ static int get(entp p, int k) {
     return get((k < p->key) ? p->left : p->right, k);
 }
 
-int itbl_get(itblp p, int k) { return get(p->root, k); }
+int itbl_get(itblp p, int k) {
+    return get(p->root, k);
+}
 
 static void put(entp *p, int k, int v) {
     if (*p == NULL) {
@@ -39,7 +41,9 @@ static void put(entp *p, int k, int v) {
     }
 }
 
-void itbl_put(itblp p, int k, int v) { put(&(p->root), k, v); }
+void itbl_put(itblp p, int k, int v) {
+    put(&(p->root), k, v);
+}
 
 static void pr(entp p) {
     if (p->left != NULL) {
